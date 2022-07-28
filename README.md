@@ -7,8 +7,23 @@ There exists a sample boilerplate code in this repository
 
 ### Assignment
 
-- Create mutation resolver to create a `User { id, name }` and a `query` to find a user by their id
-- Update `createBlog` mutation to accept a user Id, and to be saved alongside other blog data
+- Create mutation resolver to create a `User { id, name }`
+```graphql
+  createUser( input: { name: "" } ) {
+    id
+  }
+```
+
+- Create a `query` to find a user by their id
+```graphql
+  user( id: "" ) {
+    id
+    name
+  }
+```
+
+- Update `createBlog` mutation to accept a `userId` property, and persist it to mongo alongside other blog data
+
 - Create `user` resolver for `blog` node such that we can access user's id and name from the graphql
 
 ```graphql
@@ -28,7 +43,7 @@ query {
 
 ```graphql
     query {
-        user(userId) {
+        user(id: "") {
             id
             name
             blogs {
