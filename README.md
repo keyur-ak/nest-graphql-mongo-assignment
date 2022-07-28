@@ -3,7 +3,7 @@
 There exists a sample boilerplate code in this repository
 
 - Mutation to create a new blog
-- Query to read all blogs through mu
+- Query to read all blogs
 
 ### Assignment
 
