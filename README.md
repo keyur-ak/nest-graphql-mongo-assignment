@@ -73,10 +73,12 @@ query {
 $ yarn install
 ```
 
+
 ### Running the app
 
 ```bash
-# development
+$ docker-compose up  #start the mongo db
+
 $ yarn start:dev
 ```
 
