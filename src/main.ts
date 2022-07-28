@@ -6,7 +6,7 @@ import { Logger } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   await app.listen(3000);
-  const logger = new Logger(this.constructor.name);
+  const logger = new Logger('App');
   logger.log('Graphql Endpoint exposed http://localhost:3000/graphql');
 }
 bootstrap();
