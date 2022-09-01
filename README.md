@@ -93,6 +93,7 @@ $ yarn test:e2e
 ```
 
 ### Submission notes
-- Clone the repository (https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+- Fork the repository 
+- Clone the forked repository from your account (https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 - Commit and push your work in the `master` branch 
 
