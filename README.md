@@ -1,6 +1,6 @@
 # Assignment: Nestjs & Graphql
 
-There exists a sample boilerplate code in this repository
+There exists a sample boilerplate code in this repository, that includes
 
 - Mutation to create a new blog
 - Query to read all blogs
@@ -91,3 +91,8 @@ $ yarn test
 # e2e tests
 $ yarn test:e2e
 ```
+
+### Submission notes
+- Clone the repository (https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+- Commit and push your work in the `master` branch 
+
