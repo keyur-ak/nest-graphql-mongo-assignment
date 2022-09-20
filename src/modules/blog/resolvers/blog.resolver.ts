@@ -13,6 +13,13 @@ export class BlogResolver {
   }
 
   @Mutation(() => Blog)
+  deleteBlog(
+    @Args('id')
+    id: string,
+  ) {
+    return this.blogService.delete(id);
+  }
+  @Mutation(() => Blog)
   createBlog(
     @Args('input')
     createBlogInput: CreateBlogInput,

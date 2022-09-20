@@ -7,4 +7,7 @@ export class CreateBlogInput {
 
   @Field(() => String)
   description: string;
+
+  @Field(() => String)
+  user_id: string;
 }

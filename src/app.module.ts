@@ -3,6 +3,8 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongoModule } from './database/mongo-db.module';
 import { BlogModule } from './modules/blog/blog.module';
+import { UsersModule } from './modules/users/users.module';
+import { ShareServiceModule } from './shared/share-service.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { BlogModule } from './modules/blog/blog.module';
     }),
     MongoModule,
     BlogModule,
+    UsersModule,
+    ShareServiceModule,
   ],
 })
 export class AppModule {}

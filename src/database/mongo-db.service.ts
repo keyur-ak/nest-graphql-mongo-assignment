@@ -6,6 +6,6 @@ export class MongoDbService {
   readonly db: Db;
 
   constructor(client: MongoClient) {
-    this.db = client.db('default');
+    this.db = client.db('demo');
   }
 }
