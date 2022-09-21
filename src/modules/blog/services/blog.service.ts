@@ -14,39 +14,20 @@ export class BlogService {
     private readonly userServ: UserService,
   ) {
     this.collection = mongoDbService.db.collection('blogs');
-    // this.create({
-    //   title: 'apidjiapsdjpasdjpjkmoasd',
-    //   user_id: 'efc7aa6d-5db2-42d7-9e00-5d39812100af',
-    //   description: 'aopsidniapdjasd',
-    // }).then((a) => {
-    //   this.delete(a.id).then(console.log);
-    // });
-    // this.delete('aSDASDASDASDJNPOIANSD').then(console.log);
   }
 
-  async findAll() {
-    const data = await this.collection
-      .aggregate([
-        {
-          $lookup: {
-            from: 'users',
-            localField: 'user_id',
-            foreignField: '_id',
-            as: 'user',
-          },
-        },
-      ])
-      .toArray();
+  async findAll(user_id?: string) {
+    const data = await (user_id
+      ? this.collection.find({
+          user_id,
+        })
+      : this.collection.find()
+    ).toArray();
     return data.map((entity) => new Blog(entity));
   }
 
   async create(createBlogInput: CreateBlogInput) {
-    const u = await this.userServ.GetUserDetails({
-      _id: createBlogInput.user_id,
-    });
-    if (u === null) {
-      throw new HttpException('Invalid User Id', 400);
-    }
+    await this.userServ.getOneUser(createBlogInput.user_id);
     const data = {
       ...createBlogInput,
       _id: uuid.v4(),
@@ -62,7 +43,7 @@ export class BlogService {
       })
     ).value;
     if (s === null) {
-      throw new HttpException('No Blogs Found',400);
+      throw new HttpException('No Blogs Found', 400);
     }
     return new Blog(s);
   }
