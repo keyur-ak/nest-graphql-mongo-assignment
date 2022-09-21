@@ -1,24 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersResolver } from './user.resolver';
-import { UserService } from '../services/user.service';
+import { ShareServiceModule } from '../../../shared/share-service.module';
+import { MongoModule } from '../../../database/mongo-db.module';
+import { User } from '../objects/User.object';
 
 describe(UsersResolver.name, () => {
-  let blogServiceMock: Partial<Record<keyof UserService, jest.Mock>>;
   let resolver: UsersResolver;
 
   beforeEach(async () => {
-    blogServiceMock = {};
     const module: TestingModule = await Test.createTestingModule({
+      imports:[ShareServiceModule,MongoModule], 
       providers: [UsersResolver],
     })
-      .useMocker((token) => {
-        switch (token) {
-          case UserService:
-            return blogServiceMock;
-        }
-        return undefined;
-      })
-      .compile();
+    .compile();
 
     resolver = module.get(UsersResolver);
   });
@@ -26,7 +20,15 @@ describe(UsersResolver.name, () => {
   it('should be defined', () => {
     expect(resolver).toBeDefined();
   });
+  it('should be able to get All User With Blogs',async ()=>{
+    const users = await resolver.users();
+    users.forEach(u=>expect(u instanceof User).toBeTruthy());
+  });
 
+  it('should be able to get a User With Blogs',async ()=>{
+    const users = await resolver.users("demouser");
+    users.forEach(u=>expect(u instanceof User).toBeTruthy());
+  });
   /**
    * @Todo: Implement tests for the resolver properties
    */

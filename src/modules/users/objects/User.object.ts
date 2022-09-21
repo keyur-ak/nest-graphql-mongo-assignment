@@ -1,5 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Blog } from 'src/modules/blog/objects/blog.object';
+import { Blog } from '../../blog/objects/blog.object';
 
 export interface UserInterface {
   _id?: string;

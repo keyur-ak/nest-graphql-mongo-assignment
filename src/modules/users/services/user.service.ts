@@ -13,7 +13,7 @@ export class UserService {
   constructor(mongoDbService: MongoDbService) {
     this.collection = mongoDbService.db.collection(UsersCollectionName);
   }
-  async GetUserDetails(userReq?: GetUserInterface) {
+  async GetUserDetails(userReq: GetUserInterface={}) {
     return this.collection
       .aggregate<UserInterface>([
         // userReq,
@@ -40,7 +40,7 @@ export class UserService {
     return [new User(data[0])];
   }
   async getAll() {
-    const data = await this.collection.find().toArray();
+    const data = await this.GetUserDetails();
     return data.map((entity) => new User(entity));
   }
   async create(createUser: CreateUserInput) {

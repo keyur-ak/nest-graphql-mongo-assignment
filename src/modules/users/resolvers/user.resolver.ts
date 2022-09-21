@@ -8,7 +8,7 @@ export class UsersResolver {
   constructor(private readonly userService: UserService) {}
 
   @Query(() => [User])
-  async users(@Args('id', { nullable: true }) id: string) {
+  async users(@Args('id', { nullable: true }) id?: string) {
     if (id) {
       const b = await this.userService.getOneUser(id);
       return b; 

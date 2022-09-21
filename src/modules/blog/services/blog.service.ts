@@ -1,10 +1,10 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { CreateBlogInput } from '../dto/create-blog.input';
 import { MongoDbService } from '../../../database/mongo-db.service';
-import { Collection, Document, ObjectId } from 'mongodb';
+import { Collection, Document } from 'mongodb';
 import { Blog } from '../objects/blog.object';
 import * as uuid from 'uuid';
-import { UserService } from 'src/modules/users/services/user.service';
+import { UserService } from '../../users/services/user.service';
 
 @Injectable()
 export class BlogService {
@@ -64,6 +64,6 @@ export class BlogService {
     if (s === null) {
       throw new HttpException('No Blogs Found',400);
     }
-    return s;
+    return new Blog(s);
   }
 }
