@@ -12,8 +12,8 @@ describe(BlogResolver.name, () => {
   beforeEach(async () => {
     blogServiceMock = {};
     const module: TestingModule = await Test.createTestingModule({
-      imports:[ShareServiceModule,MongoModule], 
-      providers: [BlogResolver,BlogService],
+      imports: [ShareServiceModule, MongoModule],
+      providers: [BlogResolver, BlogService],
     })
       .useMocker((token) => {
         switch (token) {
@@ -31,20 +31,20 @@ describe(BlogResolver.name, () => {
     expect(resolver).toBeDefined();
     // const  = await resolver.blogs();
   });
-  it('Should be able to Get all Blogs',async ()=>{
-    const blogs =  await resolver.blogs();
-    blogs.forEach(b=>expect(b instanceof Blog).toBeTruthy());
-  },10000);
-  it('Should Insert And Delete Blog',async ()=>{
-    const blog =  await resolver.createBlog({
-      description:"Mock DESC",
-      title:"Mock Title",
-      user_id:"demouser"
+  it('Should be able to Get all Blogs', async () => {
+    const blogs = await resolver.blogs();
+    blogs.forEach((b) => expect(b instanceof Blog).toBeTruthy());
+  }, 10000);
+  it('Should Insert And Delete Blog', async () => {
+    const blog = await resolver.createBlog({
+      description: 'Mock DESC',
+      title: 'Mock Title',
+      user_id: 'demouser',
     });
     expect(blog instanceof Blog).toBeTruthy();
     const deletedBlog = await resolver.deleteBlog(blog.id);
     expect(deletedBlog instanceof Blog).toBeTruthy();
-  },10000);
+  }, 10000);
   /**
    * @Todo: Implement tests for the resolver properties
    */

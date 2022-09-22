@@ -1,4 +1,4 @@
-import { ObjectType, Field,extend } from '@nestjs/graphql';
+import { ObjectType, Field, extend } from '@nestjs/graphql';
 import { Blog } from '../../blog/objects/blog.object';
 
 export interface UserInterface {
