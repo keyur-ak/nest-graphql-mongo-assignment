@@ -19,9 +19,13 @@ export class UsersResolver {
     private readonly blogSer: BlogService,
   ) {}
 
-  @Query(() => [User])
+  @Query(() => User)
   async users(@Args('id') id: string) {
-    return await this.userService.getOneUser(id);
+    return this.userService.getOneUser(id);
+  }
+  @Query(() => [User])
+  async getAllUsers() {
+    return this.userService.GetAllUser();
   }
 
   @ResolveField(() => [Blog], {

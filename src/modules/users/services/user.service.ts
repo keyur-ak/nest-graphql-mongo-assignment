@@ -22,6 +22,10 @@ export class UserService {
     }
     return new User(data);
   }
+  async GetAllUser(){
+    const users = await this.collection.find().toArray();
+    return users.map(u=>new User(u));
+  }
   async create(createUser: CreateUserInput) {
     const data = {
       ...createUser,
